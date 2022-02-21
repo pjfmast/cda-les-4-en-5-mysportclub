@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MySportsClub.Models.Workout>
+
+@{ ViewData["Title"] = "Workouts Page"; }
+
+
+<div class="text-center">
+    <h1 class="display-4">Lijst van workouts</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Instructor</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start</th>
+                <th scope="col">Duration</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Workout workout in Model)
+            {
+            <tr>
+                <th scope="row">@workout.ID</th>
+                <td>@workout.Title</td>
+                <td>@workout.Instructor</td>
+                <td>@workout.Location</td>
+                <td>
+                    @Html.DisplayFor(_ => workout.StartTime, "DateOnly")
+                </td><td>
+                    @Html.DisplayFor(_ => workout.StartTime, "TimeOnly")
+                </td>
+                <td>@((workout.EndTime - workout.StartTime).TotalMinutes) minutes</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@workout.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@workout.ID">Details</a>
+                    <a asp-action="Delete" asp-route-id="@workout.ID">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
