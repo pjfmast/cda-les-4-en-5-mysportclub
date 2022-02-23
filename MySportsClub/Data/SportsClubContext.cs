@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MySportsClub.Models;
 
 namespace MySportsClub.Data
 {
-    public class SportsClubContext : DbContext
+    // todo lesson 4-01: extend from IdentityDBContext
+    public class SportsClubContext : IdentityDbContext
     {
         public SportsClubContext(DbContextOptions<SportsClubContext> options)
             : base(options)
@@ -26,9 +28,7 @@ namespace MySportsClub.Data
         // OnModelCreating 'stuurt' de creatie van migrations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Member>().ToTable("Member");
-            //modelBuilder.Entity<Workout>().ToTable("Workout");
-            //modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Member>().HasData(FakeData.FakeMembers);
             modelBuilder.Entity<Workout>().HasData(FakeData.FakeWorkouts);

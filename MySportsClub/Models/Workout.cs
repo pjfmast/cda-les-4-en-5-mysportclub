@@ -1,5 +1,8 @@
-﻿namespace MySportsClub.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MySportsClub.Models
 {
+    [Table("Workout")]
     public class Workout
     {
         public int ID { get; set; }

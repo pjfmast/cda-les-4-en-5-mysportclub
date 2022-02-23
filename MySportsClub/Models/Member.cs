@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MySportsClub.Models
 {
+    [Table("Member")]
     public class Member
     {
         public int ID { get; set; }

@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MySportsClub.Models;
 
 namespace MySportsClub.Controllers
 {
+    [Authorize(Roles = "Admin,Desk")]
     public class MembersController : Controller
     {
         private readonly IMemberRepository repository;
-
 
         public MembersController(IMemberRepository context)
         {
