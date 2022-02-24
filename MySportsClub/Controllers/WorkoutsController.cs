@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MySportsClub.Models;
 
 namespace MySportsClub.Controllers
 {
+    [Authorize(Roles = "Admin,Desk")]
+
     public class WorkoutsController : Controller
     {
         private readonly IWorkoutRepository repository;
@@ -15,6 +18,7 @@ namespace MySportsClub.Controllers
         }
 
         // GET: Workouts
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await repository.FindAllAsync());

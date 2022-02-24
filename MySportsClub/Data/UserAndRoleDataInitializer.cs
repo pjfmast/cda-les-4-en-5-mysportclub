@@ -5,14 +5,12 @@ namespace MySportsClub.Data
     public static class UserAndRoleDataInitializer
     {
 
-        public static void SeedRolesAndUsers(IServiceProvider serviceProvider, IConfiguration configuration)
+        public static void SeedRoles(IServiceProvider serviceProvider, IConfiguration configuration)
         {
             serviceProvider = serviceProvider.CreateScope().ServiceProvider;
 
-            UserManager<IdentityUser> userManager =
-                serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
             RoleManager<IdentityRole> roleManager =
-                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+              serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (!roleManager.RoleExistsAsync("Admin").Result)
             {
@@ -34,7 +32,14 @@ namespace MySportsClub.Data
                 role.Name = "Member";
                 IdentityResult roleResult = roleManager.CreateAsync(role).Result;
             }
-       
+
+        }
+        public static void SeedUsers(IServiceProvider serviceProvider, IConfiguration configuration)
+        {
+            serviceProvider = serviceProvider.CreateScope().ServiceProvider;
+
+            UserManager<IdentityUser> userManager =
+                serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
             if (userManager.FindByEmailAsync("admin@avd.nl").Result == null)
             {
@@ -93,7 +98,6 @@ namespace MySportsClub.Data
                 }
             }
         }
-
 
     }
 }

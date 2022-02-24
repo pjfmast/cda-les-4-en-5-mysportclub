@@ -26,14 +26,14 @@ namespace MySportsClub.Models
         public async Task<Member> FindAsync(int id)
         {
 
-            Member? member = await
+            Member member = await
                 context.Members
                 .Include(member => member.Enrollments)
                 .ThenInclude(enrollment => enrollment.Workout)
                 .AsNoTracking() //  improves performance in scenarios where the entities returned won't be updated in the current context's lifetime. 
                 .FirstOrDefaultAsync(member => member.ID == id);
 
-            member.Enrollments = member.Enrollments.OrderBy(enrollment => enrollment.Workout.StartTime).ToHashSet();
+            member!.Enrollments = member.Enrollments.OrderBy(enrollment => enrollment.Workout.StartTime).ToHashSet();
 
             return member;
         }

@@ -18,6 +18,7 @@ builder.Services
     .AddTransient<IWorkoutRepository, EFWorkoutRepository>();
 
 // todo lesson 4-02a. register services for Identity
+// see also: https://stackoverflow.com/questions/55361533/addidentity-vs-addidentitycore
 builder.Services
     .AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<SportsClubContext>();
@@ -68,7 +69,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // todo lesson 4-15. Seed Identity EF store with roles and users
-UserAndRoleDataInitializer.SeedRolesAndUsers(app.Services, app.Configuration);
+UserAndRoleDataInitializer.SeedRoles(app.Services, app.Configuration);
+UserAndRoleDataInitializer.SeedUsers(app.Services, app.Configuration);
 
 app.MapControllerRoute(
     name: "default",

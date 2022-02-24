@@ -32,7 +32,7 @@ namespace MySportsClub.Controllers
         [AllowAnonymous]
         public IActionResult AccessDenied(string returnUrl)
         {
-            return new ObjectResult("Foei " + User.Identity.Name + "! Daar mag jij niet komen!");
+            return new ObjectResult("Foei " + User?.Identity?.Name + "! Daar mag jij niet komen!");
             // betere mogelijkheid:
             //    //return RedirectToAction(returnUrl);
         }
@@ -48,11 +48,10 @@ namespace MySportsClub.Controllers
         {
             if (ModelState.IsValid)
             {
-                // todo lesson 4-08: maak controller-action voor [HhtpPost] Register.
+                // todo lesson 4-08: maak controller-action voor [HttpPost] Register.
                 IdentityUser user = new IdentityUser
                 {
-                    UserName = model.Name
-                ,
+                    UserName = model.Name,
                     Email = model.Email
                 };
 
@@ -90,7 +89,7 @@ namespace MySportsClub.Controllers
                     = await signInManager.PasswordSignInAsync(
                             model.Name,
                             model.Password,
-                            isPersistent: false,
+                            isPersistent: false, // aka: remember me?
                             lockoutOnFailure: false);
 
                 if (result.Succeeded)
