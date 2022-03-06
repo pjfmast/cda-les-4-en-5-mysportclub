@@ -16,6 +16,7 @@ namespace MySportsClub.Controllers
         }
 
         // GET: Members
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await repository.FindAllAsync());

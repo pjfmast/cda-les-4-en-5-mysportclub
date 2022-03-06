@@ -5,67 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MySportsClub.Migrations
 {
-    public partial class AddIdentity : Migration
+    public partial class InitialLes5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Enrollments_Members_MemberID",
-                table: "Enrollments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Enrollments_Workouts_WorkoutID",
-                table: "Enrollments");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Workouts",
-                table: "Workouts");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Members",
-                table: "Members");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Enrollments",
-                table: "Enrollments");
-
-            migrationBuilder.RenameTable(
-                name: "Workouts",
-                newName: "Workout");
-
-            migrationBuilder.RenameTable(
-                name: "Members",
-                newName: "Member");
-
-            migrationBuilder.RenameTable(
-                name: "Enrollments",
-                newName: "Enrollment");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Enrollments_WorkoutID",
-                table: "Enrollment",
-                newName: "IX_Enrollment_WorkoutID");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Enrollments_MemberID",
-                table: "Enrollment",
-                newName: "IX_Enrollment_MemberID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Workout",
-                table: "Workout",
-                column: "ID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Member",
-                table: "Member",
-                column: "ID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Enrollment",
-                table: "Enrollment",
-                column: "ID");
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -103,6 +46,38 @@ namespace MySportsClub.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Member",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    StartMembership = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Member", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Workout",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Instructor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CapacityLeft = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workout", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,19 +186,86 @@ namespace MySportsClub.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.UpdateData(
-                table: "Workout",
-                keyColumn: "ID",
-                keyValue: 1,
-                columns: new[] { "EndTime", "StartTime" },
-                values: new object[] { new DateTime(2022, 2, 28, 11, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 2, 28, 10, 15, 0, 0, DateTimeKind.Local) });
+            migrationBuilder.CreateTable(
+                name: "Enrollment",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberID = table.Column<int>(type: "int", nullable: false),
+                    WorkoutID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enrollment", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Member_MemberID",
+                        column: x => x.MemberID,
+                        principalTable: "Member",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Workout_WorkoutID",
+                        column: x => x.WorkoutID,
+                        principalTable: "Workout",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.UpdateData(
+            migrationBuilder.InsertData(
+                table: "Member",
+                columns: new[] { "ID", "Name", "StartMembership" },
+                values: new object[,]
+                {
+                    { 1, "Esther", new DateTime(2014, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Anton", new DateTime(2018, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Manon", new DateTime(2016, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, "Joke", new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, "Jeroen", new DateTime(2020, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, "Ellen", new DateTime(2010, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, "Eva", new DateTime(2012, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, "Anke", new DateTime(2015, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, "Koen", new DateTime(2015, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Workout",
-                keyColumn: "ID",
-                keyValue: 2,
-                columns: new[] { "EndTime", "StartTime" },
-                values: new object[] { new DateTime(2022, 2, 28, 18, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 2, 28, 17, 0, 0, 0, DateTimeKind.Local) });
+                columns: new[] { "ID", "CapacityLeft", "EndTime", "Instructor", "Location", "StartTime", "Title" },
+                values: new object[,]
+                {
+                    { 1, 35, new DateTime(2022, 3, 7, 11, 0, 0, 0, DateTimeKind.Local), "Marcel", "Yoga studio", new DateTime(2022, 3, 7, 10, 15, 0, 0, DateTimeKind.Local), "Yin Yoga" },
+                    { 2, 30, new DateTime(2022, 3, 7, 18, 0, 0, 0, DateTimeKind.Local), "Babs", "Yoga studio", new DateTime(2022, 3, 7, 17, 0, 0, 0, DateTimeKind.Local), "Pilates" },
+                    { 3, 35, new DateTime(2022, 3, 8, 11, 15, 0, 0, DateTimeKind.Local), "Silvia", "Yoga studio", new DateTime(2022, 3, 8, 10, 15, 0, 0, DateTimeKind.Local), "Hot Yoga" },
+                    { 4, 30, new DateTime(2022, 3, 8, 20, 15, 0, 0, DateTimeKind.Local), "Marie Jose", "Room 1", new DateTime(2022, 3, 8, 19, 15, 0, 0, DateTimeKind.Local), "Club Power" },
+                    { 5, 25, new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local), "Eva", "Room 2", new DateTime(2022, 3, 9, 9, 15, 0, 0, DateTimeKind.Local), "XCO" },
+                    { 6, 16, new DateTime(2022, 3, 9, 11, 15, 0, 0, DateTimeKind.Local), "Emilio", "Boxing Area", new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local), "B&K Training" },
+                    { 7, 35, new DateTime(2022, 3, 9, 20, 0, 0, 0, DateTimeKind.Local), "Babette", "Room 1", new DateTime(2022, 3, 9, 19, 15, 0, 0, DateTimeKind.Local), "Callanetics" },
+                    { 8, 18, new DateTime(2022, 3, 10, 11, 15, 0, 0, DateTimeKind.Local), "Jeroen", "Room 4", new DateTime(2022, 3, 10, 10, 15, 0, 0, DateTimeKind.Local), "Spinning" },
+                    { 9, 30, new DateTime(2022, 3, 10, 18, 15, 0, 0, DateTimeKind.Local), "Silvia", "Yoga studio", new DateTime(2022, 3, 10, 17, 15, 0, 0, DateTimeKind.Local), "Vinyasa Yoga" },
+                    { 10, 35, new DateTime(2022, 3, 11, 11, 0, 0, 0, DateTimeKind.Local), "Anke", "Room 1", new DateTime(2022, 3, 11, 10, 15, 0, 0, DateTimeKind.Local), "TBW" },
+                    { 11, 12, new DateTime(2022, 3, 11, 11, 15, 0, 0, DateTimeKind.Local), "Emilio", "Room 2", new DateTime(2022, 3, 11, 10, 30, 0, 0, DateTimeKind.Local), "Shred and Burn" },
+                    { 12, 8, new DateTime(2022, 3, 11, 19, 15, 0, 0, DateTimeKind.Local), "Mirjam", "Cycle Area", new DateTime(2022, 3, 11, 18, 15, 0, 0, DateTimeKind.Local), "Cycle Interval" },
+                    { 13, 12, new DateTime(2022, 3, 12, 10, 15, 0, 0, DateTimeKind.Local), "Ronn", "Cycle Area", new DateTime(2022, 3, 12, 9, 15, 0, 0, DateTimeKind.Local), "Spinning" },
+                    { 14, 6, new DateTime(2022, 3, 6, 11, 15, 0, 0, DateTimeKind.Local), "Lonneke", "Cycle Area", new DateTime(2022, 3, 6, 10, 15, 0, 0, DateTimeKind.Local), "SoulRide" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Enrollment",
+                columns: new[] { "ID", "MemberID", "WorkoutID" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 1, 4 },
+                    { 3, 2, 2 },
+                    { 4, 2, 5 },
+                    { 5, 2, 14 },
+                    { 6, 3, 4 },
+                    { 7, 3, 8 },
+                    { 8, 4, 1 },
+                    { 9, 4, 4 },
+                    { 10, 4, 10 },
+                    { 11, 4, 13 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -264,33 +306,19 @@ namespace MySportsClub.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Enrollment_Member_MemberID",
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_MemberID",
                 table: "Enrollment",
-                column: "MemberID",
-                principalTable: "Member",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+                column: "MemberID");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Enrollment_Workout_WorkoutID",
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_WorkoutID",
                 table: "Enrollment",
-                column: "WorkoutID",
-                principalTable: "Workout",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+                column: "WorkoutID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Enrollment_Member_MemberID",
-                table: "Enrollment");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Enrollment_Workout_WorkoutID",
-                table: "Enrollment");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -307,89 +335,19 @@ namespace MySportsClub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Enrollment");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Workout",
-                table: "Workout");
+            migrationBuilder.DropTable(
+                name: "Member");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Member",
-                table: "Member");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Enrollment",
-                table: "Enrollment");
-
-            migrationBuilder.RenameTable(
-                name: "Workout",
-                newName: "Workouts");
-
-            migrationBuilder.RenameTable(
-                name: "Member",
-                newName: "Members");
-
-            migrationBuilder.RenameTable(
-                name: "Enrollment",
-                newName: "Enrollments");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Enrollment_WorkoutID",
-                table: "Enrollments",
-                newName: "IX_Enrollments_WorkoutID");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Enrollment_MemberID",
-                table: "Enrollments",
-                newName: "IX_Enrollments_MemberID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Workouts",
-                table: "Workouts",
-                column: "ID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Members",
-                table: "Members",
-                column: "ID");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Enrollments",
-                table: "Enrollments",
-                column: "ID");
-
-            migrationBuilder.UpdateData(
-                table: "Workouts",
-                keyColumn: "ID",
-                keyValue: 1,
-                columns: new[] { "EndTime", "StartTime" },
-                values: new object[] { new DateTime(2022, 2, 21, 11, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 2, 21, 10, 15, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Workouts",
-                keyColumn: "ID",
-                keyValue: 2,
-                columns: new[] { "EndTime", "StartTime" },
-                values: new object[] { new DateTime(2022, 2, 21, 18, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 2, 21, 17, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Enrollments_Members_MemberID",
-                table: "Enrollments",
-                column: "MemberID",
-                principalTable: "Members",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Enrollments_Workouts_WorkoutID",
-                table: "Enrollments",
-                column: "WorkoutID",
-                principalTable: "Workouts",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.DropTable(
+                name: "Workout");
         }
     }
 }

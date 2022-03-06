@@ -5,7 +5,7 @@ using MySportsClub.Models;
 namespace MySportsClub.Data
 {
     // todo lesson 4-01: extend from IdentityDBContext
-    public class SportsClubContext : IdentityDbContext
+    public class SportsClubContext : IdentityDbContext // DbContext
     {
         public SportsClubContext(DbContextOptions<SportsClubContext> options)
             : base(options)
@@ -19,6 +19,7 @@ namespace MySportsClub.Data
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
+
 
         /*        Property names for collections are typically plural(Students rather than Student),
          *        but developers disagree about whether table names should be pluralized or not.

@@ -4,7 +4,7 @@ using MySportsClub.Models;
 
 namespace MySportsClub.Controllers
 {
-    [Authorize(Roles = "Admin,Desk")]
+    [Authorize]
 
     public class WorkoutsController : Controller
     {
@@ -43,6 +43,7 @@ namespace MySportsClub.Controllers
         }
 
         // GET: Workouts/Create
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             return View();
@@ -69,6 +70,8 @@ namespace MySportsClub.Controllers
         }
 
         // GET: Workouts/Edit/5
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

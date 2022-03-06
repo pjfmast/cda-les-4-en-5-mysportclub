@@ -12,8 +12,8 @@ using MySportsClub.Data;
 namespace MySportsClub.Migrations
 {
     [DbContext(typeof(SportsClubContext))]
-    [Migration("20220221134606_Initial")]
-    partial class Initial
+    [Migration("20220306121923_InitialLes5")]
+    partial class InitialLes5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,204 @@ namespace MySportsClub.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
 
             modelBuilder.Entity("MySportsClub.Models.Enrollment", b =>
                 {
@@ -44,7 +242,7 @@ namespace MySportsClub.Migrations
 
                     b.HasIndex("WorkoutID");
 
-                    b.ToTable("Enrollments");
+                    b.ToTable("Enrollment");
 
                     b.HasData(
                         new
@@ -133,7 +331,7 @@ namespace MySportsClub.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Members");
+                    b.ToTable("Member");
 
                     b.HasData(
                         new
@@ -220,149 +418,200 @@ namespace MySportsClub.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Workouts");
+                    b.ToTable("Workout");
 
                     b.HasData(
                         new
                         {
                             ID = 1,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 21, 11, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 7, 11, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Marcel",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 21, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 7, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Yin Yoga"
                         },
                         new
                         {
                             ID = 2,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 21, 18, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 7, 18, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Babs",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 21, 17, 0, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 7, 17, 0, 0, 0, DateTimeKind.Local),
                             Title = "Pilates"
                         },
                         new
                         {
                             ID = 3,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 22, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 8, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Silvia",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 22, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 8, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Hot Yoga"
                         },
                         new
                         {
                             ID = 4,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 22, 20, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 8, 20, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Marie Jose",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 22, 19, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 8, 19, 15, 0, 0, DateTimeKind.Local),
                             Title = "Club Power"
                         },
                         new
                         {
                             ID = 5,
                             CapacityLeft = 25,
-                            EndTime = new DateTime(2022, 2, 23, 10, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Eva",
                             Location = "Room 2",
-                            StartTime = new DateTime(2022, 2, 23, 9, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 9, 15, 0, 0, DateTimeKind.Local),
                             Title = "XCO"
                         },
                         new
                         {
                             ID = 6,
                             CapacityLeft = 16,
-                            EndTime = new DateTime(2022, 2, 23, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Emilio",
                             Location = "Boxing Area",
-                            StartTime = new DateTime(2022, 2, 23, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "B&K Training"
                         },
                         new
                         {
                             ID = 7,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 23, 20, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 20, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Babette",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 23, 19, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 19, 15, 0, 0, DateTimeKind.Local),
                             Title = "Callanetics"
                         },
                         new
                         {
                             ID = 8,
                             CapacityLeft = 18,
-                            EndTime = new DateTime(2022, 2, 24, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 10, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Jeroen",
                             Location = "Room 4",
-                            StartTime = new DateTime(2022, 2, 24, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 10, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Spinning"
                         },
                         new
                         {
                             ID = 9,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 24, 18, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 10, 18, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Silvia",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 24, 17, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 10, 17, 15, 0, 0, DateTimeKind.Local),
                             Title = "Vinyasa Yoga"
                         },
                         new
                         {
                             ID = 10,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 25, 11, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 11, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Anke",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 25, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "TBW"
                         },
                         new
                         {
                             ID = 11,
                             CapacityLeft = 12,
-                            EndTime = new DateTime(2022, 2, 25, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Emilio",
                             Location = "Room 2",
-                            StartTime = new DateTime(2022, 2, 25, 10, 30, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 10, 30, 0, 0, DateTimeKind.Local),
                             Title = "Shred and Burn"
                         },
                         new
                         {
                             ID = 12,
                             CapacityLeft = 8,
-                            EndTime = new DateTime(2022, 2, 25, 19, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 19, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Mirjam",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 25, 18, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 18, 15, 0, 0, DateTimeKind.Local),
                             Title = "Cycle Interval"
                         },
                         new
                         {
                             ID = 13,
                             CapacityLeft = 12,
-                            EndTime = new DateTime(2022, 2, 26, 10, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 12, 10, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Ronn",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 26, 9, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 12, 9, 15, 0, 0, DateTimeKind.Local),
                             Title = "Spinning"
                         },
                         new
                         {
                             ID = 14,
                             CapacityLeft = 6,
-                            EndTime = new DateTime(2022, 2, 27, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 6, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Lonneke",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 27, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 6, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "SoulRide"
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MySportsClub.Models.Enrollment", b =>

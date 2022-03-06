@@ -13,7 +13,9 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 // Add a DBContext to the container,
 // see also: https://stackoverflow.com/questions/68980778/config-connection-string-in-net-core-6
 builder.Services
-    .AddDbContext<SportsClubContext>(options => options.UseSqlServer(connectionString))
+    .AddDbContext<SportsClubContext>(options =>
+    options.UseSqlServer(connectionString)
+    )
     .AddTransient<IMemberRepository, EFMemberRepository>()
     .AddTransient<IWorkoutRepository, EFWorkoutRepository>();
 
@@ -31,7 +33,7 @@ builder.Services.Configure<IdentityOptions>(
     {
         // voor lesson 4-09b: Configuration check on password:
         options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireDigit = false;
+        options.Password.RequireDigit = true;
         options.Password.RequiredUniqueChars = 5;
         options.Password.RequiredLength = 8;
     });

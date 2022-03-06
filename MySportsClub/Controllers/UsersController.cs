@@ -58,7 +58,7 @@ namespace MySportsClub.Controllers
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await signInManager.SignInAsync(user, isPersistent: true);
                     return RedirectToAction("index", "home");
                 }
                 foreach (var error in result.Errors)
@@ -89,8 +89,9 @@ namespace MySportsClub.Controllers
                     = await signInManager.PasswordSignInAsync(
                             model.Name,
                             model.Password,
-                            isPersistent: false, // aka: remember me?
-                            lockoutOnFailure: false);
+                            isPersistent: true, // aka: remember me?
+                            lockoutOnFailure: false
+                            );
 
                 if (result.Succeeded)
                 {

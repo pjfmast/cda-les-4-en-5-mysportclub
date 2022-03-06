@@ -423,140 +423,140 @@ namespace MySportsClub.Migrations
                         {
                             ID = 1,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 28, 11, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 7, 11, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Marcel",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 28, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 7, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Yin Yoga"
                         },
                         new
                         {
                             ID = 2,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 28, 18, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 7, 18, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Babs",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 28, 17, 0, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 7, 17, 0, 0, 0, DateTimeKind.Local),
                             Title = "Pilates"
                         },
                         new
                         {
                             ID = 3,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 22, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 8, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Silvia",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 22, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 8, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Hot Yoga"
                         },
                         new
                         {
                             ID = 4,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 22, 20, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 8, 20, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Marie Jose",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 22, 19, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 8, 19, 15, 0, 0, DateTimeKind.Local),
                             Title = "Club Power"
                         },
                         new
                         {
                             ID = 5,
                             CapacityLeft = 25,
-                            EndTime = new DateTime(2022, 2, 23, 10, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Eva",
                             Location = "Room 2",
-                            StartTime = new DateTime(2022, 2, 23, 9, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 9, 15, 0, 0, DateTimeKind.Local),
                             Title = "XCO"
                         },
                         new
                         {
                             ID = 6,
                             CapacityLeft = 16,
-                            EndTime = new DateTime(2022, 2, 23, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Emilio",
                             Location = "Boxing Area",
-                            StartTime = new DateTime(2022, 2, 23, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "B&K Training"
                         },
                         new
                         {
                             ID = 7,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 23, 20, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 9, 20, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Babette",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 23, 19, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 9, 19, 15, 0, 0, DateTimeKind.Local),
                             Title = "Callanetics"
                         },
                         new
                         {
                             ID = 8,
                             CapacityLeft = 18,
-                            EndTime = new DateTime(2022, 2, 24, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 10, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Jeroen",
                             Location = "Room 4",
-                            StartTime = new DateTime(2022, 2, 24, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 10, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Spinning"
                         },
                         new
                         {
                             ID = 9,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 2, 24, 18, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 10, 18, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Silvia",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 2, 24, 17, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 10, 17, 15, 0, 0, DateTimeKind.Local),
                             Title = "Vinyasa Yoga"
                         },
                         new
                         {
                             ID = 10,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 2, 25, 11, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 11, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Anke",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 2, 25, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "TBW"
                         },
                         new
                         {
                             ID = 11,
                             CapacityLeft = 12,
-                            EndTime = new DateTime(2022, 2, 25, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Emilio",
                             Location = "Room 2",
-                            StartTime = new DateTime(2022, 2, 25, 10, 30, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 10, 30, 0, 0, DateTimeKind.Local),
                             Title = "Shred and Burn"
                         },
                         new
                         {
                             ID = 12,
                             CapacityLeft = 8,
-                            EndTime = new DateTime(2022, 2, 25, 19, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 11, 19, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Mirjam",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 25, 18, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 11, 18, 15, 0, 0, DateTimeKind.Local),
                             Title = "Cycle Interval"
                         },
                         new
                         {
                             ID = 13,
                             CapacityLeft = 12,
-                            EndTime = new DateTime(2022, 2, 26, 10, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 12, 10, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Ronn",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 26, 9, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 12, 9, 15, 0, 0, DateTimeKind.Local),
                             Title = "Spinning"
                         },
                         new
                         {
                             ID = 14,
                             CapacityLeft = 6,
-                            EndTime = new DateTime(2022, 2, 27, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 6, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Lonneke",
                             Location = "Cycle Area",
-                            StartTime = new DateTime(2022, 2, 27, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 6, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "SoulRide"
                         });
                 });
