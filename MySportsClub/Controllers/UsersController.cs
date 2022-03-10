@@ -67,7 +67,7 @@ namespace MySportsClub.Controllers
                 {
                     await signInManager.SignInAsync(user, isPersistent: true);
                     //return RedirectToAction("index", "home");
-                    return RedirectToAction(model.ReturnUrl);
+                    return Redirect(model.ReturnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
