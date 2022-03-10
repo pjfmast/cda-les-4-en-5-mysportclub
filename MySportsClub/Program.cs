@@ -50,6 +50,8 @@ builder.Services.ConfigureApplicationCookie(
         // todo lesson 4-18 configureren: acces denied
         options.AccessDeniedPath = "/Users/AccessDenied";
     });
+
+
 // todo lesson 5-1: configure google api console 
 // todo lesson 5-2: 
 builder.Services

@@ -21,6 +21,10 @@ namespace MySportsClub.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirmed password is not equal to password.")]
         public string ConfirmedPassword { get; set; }
+
+        // Holds the url the user wants to access.
+        // before the user authenticates
+        public string ReturnUrl { get; set; }
     }
 
 }

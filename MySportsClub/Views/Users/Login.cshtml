@@ -25,10 +25,10 @@
         </div>
 
 
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary" asp-route-returnUrl="@Model.ReturnUrl" type="submit">Login</button>
 
         <!--todo lesson 5-04a: maak navigatie links aan om in te loggen met Google authentication -->
-        <a class="btn btn-info" asp-action="GoogleLogin" asp-route-returnUrl="@ViewBag.returnUrl">Google Login</a>
+        <button class="btn btn-info" asp-action="GoogleLogin" asp-route-returnUrl="@Model.ReturnUrl">Google Login</button>
 
     </form>
 </div>

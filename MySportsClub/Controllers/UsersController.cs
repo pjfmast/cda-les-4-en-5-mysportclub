@@ -41,9 +41,13 @@ namespace MySportsClub.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register(string returnUrl)
         {
-            return View();
+            RegisterUserViewModel model = new RegisterUserViewModel
+            {
+                ReturnUrl = returnUrl
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -62,7 +66,8 @@ namespace MySportsClub.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: true);
-                    return RedirectToAction("index", "home");
+                    //return RedirectToAction("index", "home");
+                    return RedirectToAction(model.ReturnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
@@ -75,9 +80,14 @@ namespace MySportsClub.Controllers
 
 
         [HttpGet]
-        public IActionResult Login()
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl)
         {
-            return View();
+            LoginViewModel model = new LoginViewModel
+            {
+                ReturnUrl = returnUrl
+            };
+            return View(model);
         }
 
 
@@ -98,7 +108,8 @@ namespace MySportsClub.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    return Redirect(model.ReturnUrl);
                 }
                 ModelState.AddModelError("", "Login failed.");
             }

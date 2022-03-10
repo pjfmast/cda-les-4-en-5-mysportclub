@@ -11,5 +11,9 @@ namespace MySportsClub.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        // Holds the url the user wants to access.
+        // before the user authenticates
+        public string ReturnUrl { get; set; }
     }
 }
