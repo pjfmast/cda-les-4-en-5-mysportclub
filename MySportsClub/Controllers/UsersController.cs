@@ -43,8 +43,7 @@ namespace MySportsClub.Controllers
         [HttpGet]
         public IActionResult Register(string returnUrl)
         {
-            RegisterUserViewModel model = new RegisterUserViewModel
-            {
+            RegisterUserViewModel model = new() {
                 ReturnUrl = returnUrl
             };
             return View(model);
@@ -56,8 +55,7 @@ namespace MySportsClub.Controllers
             if (ModelState.IsValid)
             {
                 // todo lesson 4-08: maak controller-action voor [HttpPost] Register.
-                IdentityUser user = new IdentityUser
-                {
+                IdentityUser user = new() {
                     UserName = model.Name,
                     Email = model.Email
                 };
@@ -83,8 +81,7 @@ namespace MySportsClub.Controllers
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
-            LoginViewModel model = new LoginViewModel
-            {
+            LoginViewModel model = new() {
                 ReturnUrl = returnUrl
             };
             return View(model);
@@ -119,12 +116,16 @@ namespace MySportsClub.Controllers
 
         // todo lesson 5-04b Add GoogleLogin action
         [AllowAnonymous]
+        [HttpPost]
         public IActionResult GoogleLogin(string returnUrl)
         {
+            // the call-back action is configured here:
+            // in controller Users , the action GoogleResponse
             string redirectUrl = Url.Action("GoogleResponse", "Users",
                 new { ReturnUrl = returnUrl });
             AuthenticationProperties properties
-                = signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+                = signInManager.ConfigureExternalAuthenticationProperties
+                    ("Google", redirectUrl);
 
             // A ChallengeResult is an ActionResult that when executed, 
             // challenges the given authentication schemes' handler. 
@@ -162,8 +163,7 @@ namespace MySportsClub.Controllers
             else
             {
                 // No Google user stored, create a new IdentityUser with the Google credentials:
-                IdentityUser user = new IdentityUser
-                {
+                IdentityUser user = new() {
                     Email = info.Principal.FindFirstValue(ClaimTypes.Email),
                     UserName = info.Principal.FindFirstValue(ClaimTypes.Email)
                 };

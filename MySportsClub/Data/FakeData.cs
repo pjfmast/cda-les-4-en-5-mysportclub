@@ -7,22 +7,24 @@ namespace MySportsClub.Data
     {
 
         public static List<Member> FakeMembers
-            = new List<Member> {
-                new Member{ID= 1, Name = "Esther", StartMembership = new DateTime(2014, 10, 8)},
-                new Member{ID= 2, Name = "Anton", StartMembership = new DateTime(2018, 1, 5)},
-                new Member{ID= 3, Name = "Manon", StartMembership = new DateTime(2016, 6, 1)},
-                new Member{ID= 4, Name = "Joke", StartMembership = new DateTime(2019, 1, 10)},
-                new Member{ID= 5, Name = "Jeroen", StartMembership = new DateTime(2020, 1, 15)},
-                new Member{ID= 6, Name = "Ellen", StartMembership = new DateTime(2010, 5, 8)},
-                new Member{ID= 7, Name = "Eva", StartMembership = new DateTime(2012, 9, 1)},
-                new Member{ID= 8, Name = "Anke", StartMembership = new DateTime(2015, 12, 10)},
-                new Member{ID= 9, Name = "Koen", StartMembership = new DateTime(2015, 4, 16)},
+            = new() {
+                new Member{ID= 1, Name = "Esther", Email = "esther@gmail.com", StartMembership = new DateTime(2014, 10, 8)},
+                new Member{ID= 2, Name = "Anton", Email = "anton@gmail.com", StartMembership = new DateTime(2018, 1, 5)},
+                new Member{ID= 3, Name = "Manon", Email = "manon@avans.com", StartMembership = new DateTime(2016, 6, 1)},
+                new Member{ID= 4, Name = "Joke", Email = "joke@avd.com", StartMembership = new DateTime(2019, 1, 10)},
+                new Member{ID= 5, Name = "Jeroen", Email = "jeroen@gmail.com", StartMembership = new DateTime(2020, 1, 15)},
+                new Member{ID= 6, Name = "Ellen", Email = "ellen@breda.nl", StartMembership = new DateTime(2010, 5, 8)},
+                new Member{ID= 7, Name = "Eva", Email = "eva@edu.org", StartMembership = new DateTime(2012, 9, 1)},
+                new Member{ID= 8, Name = "Anke", Email = "anke@bandw.com", StartMembership = new DateTime(2015, 12, 10)},
+                new Member{ID= 9, Name = "Koen", Email = "koen@gmail.com", StartMembership = new DateTime(2015, 4, 16)},
+                new Member{ID= 10, Name = "Paul", Email = "pjfmast@gmail.com", StartMembership = new DateTime(2014, 12, 22)},
             };
 
-        private static DateTime today = DateTime.Now;
+
+        private static readonly DateTime today = DateTime.Now;
 
         public static List<Workout> FakeWorkouts
-            = new List<Workout> {
+            = new() {
                 new Workout{ID= 1, Title = "Yin Yoga", Instructor = "Marcel", Location = "Yoga studio", StartTime = today.NextDayAt(DayOfWeek.Monday, 10, 15), EndTime = today.NextDayAt(DayOfWeek.Monday, 11, 0), CapacityLeft = 35},
                 new Workout{ID= 2, Title = "Pilates",Instructor = "Babs",  Location = "Yoga studio", StartTime = today.NextDayAt(DayOfWeek.Monday, 17, 0), EndTime = today.NextDayAt(DayOfWeek.Monday, 18, 0), CapacityLeft = 30},
                 new Workout{ID= 3, Title = "Hot Yoga",Instructor = "Silvia",  Location ="Yoga studio", StartTime = today.NextDayAt(DayOfWeek.Tuesday, 10, 15), EndTime = today.NextDayAt(DayOfWeek.Tuesday, 11, 15), CapacityLeft=35},
@@ -41,7 +43,7 @@ namespace MySportsClub.Data
 
 
         public static List<Enrollment> FakeEnrollments
-            = new List<Enrollment>  {
+            = new() {
                 new Enrollment{ID= 1, MemberID=1, WorkoutID=1},
                 new Enrollment{ID= 2, MemberID=1, WorkoutID=4},
                 new Enrollment{ID= 3, MemberID=2, WorkoutID=2},
@@ -53,6 +55,7 @@ namespace MySportsClub.Data
                 new Enrollment{ID= 9, MemberID=4, WorkoutID=4},
                 new Enrollment{ID= 10,MemberID=4, WorkoutID=10},
                 new Enrollment{ID= 11,MemberID=4, WorkoutID=13},
+                new Enrollment{ID= 12,MemberID=10, WorkoutID=5},
             };
     }
 }

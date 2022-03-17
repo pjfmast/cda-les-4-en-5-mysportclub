@@ -12,6 +12,11 @@ namespace MySportsClub.Models
         [StringLength(60, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        // todo lesson 6 - add property Email
+        public string Email { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime StartMembership { get; set; }
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();

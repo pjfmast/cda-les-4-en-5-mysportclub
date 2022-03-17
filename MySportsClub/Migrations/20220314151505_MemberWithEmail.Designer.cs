@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySportsClub.Data;
 
@@ -11,13 +12,14 @@ using MySportsClub.Data;
 namespace MySportsClub.Migrations
 {
     [DbContext(typeof(SportsClubContext))]
-    partial class SportsClubContextModelSnapshot : ModelSnapshot
+    [Migration("20220314151505_MemberWithEmail")]
+    partial class MemberWithEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -308,12 +310,6 @@ namespace MySportsClub.Migrations
                             ID = 11,
                             MemberID = 4,
                             WorkoutID = 13
-                        },
-                        new
-                        {
-                            ID = 12,
-                            MemberID = 10,
-                            WorkoutID = 5
                         });
                 });
 
@@ -404,13 +400,6 @@ namespace MySportsClub.Migrations
                             Email = "koen@gmail.com",
                             Name = "Koen",
                             StartMembership = new DateTime(2015, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ID = 10,
-                            Email = "pjfmast@gmail.com",
-                            Name = "Paul",
-                            StartMembership = new DateTime(2014, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -449,40 +438,40 @@ namespace MySportsClub.Migrations
                         {
                             ID = 1,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 3, 21, 11, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 14, 11, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Marcel",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 3, 21, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 14, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Yin Yoga"
                         },
                         new
                         {
                             ID = 2,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 3, 21, 18, 0, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 14, 18, 0, 0, 0, DateTimeKind.Local),
                             Instructor = "Babs",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 3, 21, 17, 0, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 14, 17, 0, 0, 0, DateTimeKind.Local),
                             Title = "Pilates"
                         },
                         new
                         {
                             ID = 3,
                             CapacityLeft = 35,
-                            EndTime = new DateTime(2022, 3, 22, 11, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 15, 11, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Silvia",
                             Location = "Yoga studio",
-                            StartTime = new DateTime(2022, 3, 22, 10, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 15, 10, 15, 0, 0, DateTimeKind.Local),
                             Title = "Hot Yoga"
                         },
                         new
                         {
                             ID = 4,
                             CapacityLeft = 30,
-                            EndTime = new DateTime(2022, 3, 22, 20, 15, 0, 0, DateTimeKind.Local),
+                            EndTime = new DateTime(2022, 3, 15, 20, 15, 0, 0, DateTimeKind.Local),
                             Instructor = "Marie Jose",
                             Location = "Room 1",
-                            StartTime = new DateTime(2022, 3, 22, 19, 15, 0, 0, DateTimeKind.Local),
+                            StartTime = new DateTime(2022, 3, 15, 19, 15, 0, 0, DateTimeKind.Local),
                             Title = "Club Power"
                         },
                         new

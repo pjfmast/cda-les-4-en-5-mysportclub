@@ -29,8 +29,7 @@ builder.Services
 // todo lesson 4-09b - configureren check op password
 //    (Kan ook als parameter in AddIdentity worden ingesteld.)
 builder.Services.Configure<IdentityOptions>(
-    options =>
-    {
+    options => {
         // voor lesson 4-09b: Configuration check on password:
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireDigit = true;
@@ -42,8 +41,7 @@ builder.Services.Configure<IdentityOptions>(
 // De default redirect naar Login URL in Identity is: /Account/Login
 // Dit kun je op deze manier wijzigen:
 builder.Services.ConfigureApplicationCookie(
-    options =>
-    {
+    options => {
         // todo lesson 4-16c configureren:
         options.LoginPath = "/Users/Login";
 
@@ -57,18 +55,37 @@ builder.Services.ConfigureApplicationCookie(
 builder.Services
     .AddAuthentication()
     .AddGoogle(googleOptions => {
-        IConfigurationSection googleAuthNSection 
+        IConfigurationSection googleAuthNSection
             = builder.Configuration.GetSection("Authentication:Google");
 
         googleOptions.ClientId = googleAuthNSection["ClientId"];
         googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
     });
+// previous steps:
+// todo lesson 6-01: install using NuGet manager: MailKit en MimeKit packages
+// todo lesson 6-02: Create data class MailRequest (see Models/MailRequest)
+
+// todo lesson 6-03: create an Ethereal Account aan (https://ethereal.email/) and
+// todo lesson 6-04: use Manage User Secrets (preferred instead of AppSettings.json) for SMTP server data 
+//      also see: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#json-structure-flattening-in-visual-studio
+// todo lesson 6-05a: Create data class MailSettings (see Models/MailSettings)
+// todo lesson 6-05b: Register the configuration MailSettings
+//      also see: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-6.0
+builder.Services.Configure<MailSettings>(
+    builder.Configuration.GetSection("MailSettings"));
+
+// todo Lesson 6-06a: Create interface IMailService (see Services/IMailService)
+// todo Lesson 6-06b: Create class MailService (see Services/MailService)
+
+// todo lesson 6-07: Add services for using dependency injection on IMailService
+builder.Services.AddTransient<
+    MySportsClub.Services.IMailService,
+    MySportsClub.Services.MailService>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
+if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();

@@ -51,7 +51,7 @@ namespace MySportsClub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,StartMembership")] Member member)
+        public async Task<IActionResult> Create([Bind("ID,Name,Email,StartMembership")] Member member)
         {
             if (member.StartMembership.Date < DateTime.Now.Date)
             {
@@ -87,7 +87,7 @@ namespace MySportsClub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,StartMembership")] Member member)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Email,StartMembership")] Member member)
         {
             if (id != member.ID)
             {
